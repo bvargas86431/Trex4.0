@@ -3,3 +3,5 @@ uvicorn[standard]
 sqlmodel
 python-jose
 passlib[bcrypt]
+python-multipart
+requests
