@@ -1,0 +1,85 @@
+.footer {
+    background-color: #121212;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .topSection {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
+  
+  .logoSection {
+    text-align: center;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #FFB300;
+  }
+  
+  .slogan {
+    font-size: 0.9rem;
+    color: gray;
+  }
+  
+  .linksSection {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .linksSection ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .linksSection ul li {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+  
+  .linksSection ul li:hover {
+    color: #ffb300;
+  }
+  
+  .divider {
+    width: 80%;
+    height: 1px;
+    background-color: gray;
+    margin: 20px auto;
+  }
+  
+  .bottomSection {
+    text-align: center;
+  }
+  
+  .socialIcons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .socialIcons svg {
+    cursor: pointer;
+  }
+  
+  .socialIcons svg:hover {
+    color: #ffb300;
+  }
+  
+  .copyright {
+    font-size: 0.8rem;
+    color: gray;
+  }
+  
