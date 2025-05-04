@@ -13,6 +13,7 @@ import "./styles/styles.css";
 import { Link } from "react-router-dom";
 import SneakersHombrePage from "./pages/SneakersHombrePage";
 import SneakersMujerPage from "./pages/SneakersMujerPage";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -142,6 +143,7 @@ function App() {
         <Route path="/sneakers" element={<SneakersPage />} />
         <Route path="/hombre" element={<SneakersHombrePage />} />
         <Route path="/mujer" element={<SneakersMujerPage />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
   );

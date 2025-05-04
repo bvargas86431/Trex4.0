@@ -112,6 +112,50 @@
     color: #E0E0E0;
 }
 
+.carContainer{
+    text-decoration: none;
+    color: #B0B0B0;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+.carContainer:hover{
+    color: #FFB300;
+}
+.carIcon{
+    font-size: 30px;
+    
+}
+.buyingContainer{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.carContainer {
+    text-decoration: none;
+    color: #B0B0B0;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.carContainer:hover {
+    color: #FFB300;
+}
+
+.carIcon {
+    font-size: 30px;
+}
+
+.buyingContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 @media (max-width: 768px) {
     .navLinks {
         display: none;
