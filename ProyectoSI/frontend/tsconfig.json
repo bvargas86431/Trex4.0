@@ -7,6 +7,7 @@
     "esModuleInterop": true,  // Permite importar módulos comunes (como `import x from 'y'`)
     "skipLibCheck": true,  // Omite la comprobación de las bibliotecas, mejora el rendimiento
     "forceConsistentCasingInFileNames": true,  // Evita diferencias de mayúsculas/minúsculas en los nombres de archivo
-    "allowImportingTsExtensions": true  // Permite importar archivos .tsx sin que se marque error
+    "allowImportingTsExtensions": true,  // Permite importar archivos .tsx sin que se marque error
+    "noEmit": true  // Deshabilita la emisión de archivos de salida
   }
 }
