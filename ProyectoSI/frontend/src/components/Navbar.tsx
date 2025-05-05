@@ -23,7 +23,8 @@ export default function Navbar() {
 
   return (
     <nav className={`${styles.navbar} ${isVisible ? styles.visible : styles.hidden}`}>
-      <div className={styles.logo}>TreX</div>
+      <Link to="/" className={styles.logo}>TreX</Link>
+
 
       <ul className={`${styles.navLinks} ${isOpen ? styles.active : ""}`}>
         <li>

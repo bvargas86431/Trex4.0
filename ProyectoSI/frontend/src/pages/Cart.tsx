@@ -3,6 +3,7 @@ import styles from "../styles/Cart.module.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useCart } from "../context/CartContext"; 
+import PaymentModal from "../components/PaymentModal"; 
 
 // Create the SweetAlert instance with React Content support
 const MySwal = withReactContent(Swal);
@@ -10,27 +11,39 @@ const MySwal = withReactContent(Swal);
 export default function Cart() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
-
   const handleCheckout = () => {
+    setShowModal(true); // Open modal directly (or use SweetAlert beforehand if desired)
+  };
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
+  const handlePaymentSubmit = (formData: {
+    name: string;
+    cardNumber: string;
+    expirationMonth: string;
+    expirationYear: string;
+    cvv: string;
+    address: string;
+    city: string;
+    postalCode: string;
+    country: string;
+    phone: string;
+    cardType: string;
+  }) => {
+    console.log("Payment submitted:", formData);
+    setShowModal(false);
     MySwal.fire({
       title: "¡Compra exitosa!",
       text: "Gracias por tu compra. ¡Nos vemos pronto!",
       icon: "success",
       confirmButtonText: "Aceptar",
-      customClass: {
-        container: "my-swal-container",
-        title: "my-swal-title",
-        confirmButton: "my-swal-button",
-      },
       background: "#222",
       color: "#fff",
       confirmButtonColor: "#FFB300",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setShowModal(true);
-      }
     });
   };
+  
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price_cop * item.quantity,
@@ -98,6 +111,12 @@ export default function Cart() {
         </button>
         <p className={styles.securePayment}>🔒 Pago seguro</p>
       </div>
+      <PaymentModal
+        isOpen={showModal}
+        onClose={handleModalClose}
+        onSubmit={handlePaymentSubmit}
+      />
     </div>
+    
   );
 }
