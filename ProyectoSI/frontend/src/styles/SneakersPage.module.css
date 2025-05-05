@@ -24,6 +24,7 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease;
+    cursor: pointer;
   }
   
   .card:hover {
@@ -45,6 +46,7 @@
   
   .cardTitle {
     font-size: 1.5rem;
+    color: #929292;
     font-weight: bold;
     margin-bottom: 0.5rem;
   }
@@ -60,4 +62,17 @@
     font-weight: bold;
     color: #ffb400;
   }
+  .card {
+    position: relative; /* Needed for absolute positioning the checkbox */
+  }
+  
+  .cardCheckbox {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    transform: scale(1.4);
+    cursor: pointer;
+  }
+
   

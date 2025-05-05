@@ -17,8 +17,9 @@
   
   /* Left Section - Mi Carrito */
   .miCarritoContainer {
-    flex: 2;
-    padding-right: 1rem;
+    max-height: 400px; /* or any height that suits your design */
+    overflow-y: auto;
+    padding-right: 10px; /* To avoid cutting off the scrollbar */
   }
   
   .miCarritoContainer h2 {
