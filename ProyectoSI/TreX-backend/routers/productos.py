@@ -1,35 +1,29 @@
-from fastapi import APIRouter, HTTPException
-from models.producto import Producto
-from database import productos
-from fastapi import APIRouter, Depends
-from database import get_db
-from sqlalchemy.orm import Session
+import os
+import json
+from fastapi import APIRouter
 
 router = APIRouter()
 
-# ...GET y POST existentes
+# Ruta relativa desde productos.py hasta la raíz donde está el JSON
+DATA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'api.json'))
 
-@router.put("/productos/{id}", response_model=Producto)
-def editar_producto(id: int, datos_actualizados: Producto):
-    for index, producto in enumerate(productos):
-        if producto["id"] == id:
-            productos[index] = datos_actualizados.dict()
-            return productos[index]
-    raise HTTPException(status_code=404, detail="Producto no encontrado")
+@router.get("/productos")
+def get_productos():
+    with open(DATA_PATH, 'r', encoding='utf-8') as file:
+        data = json.load(file)
 
+    productos = data.get("sneakers", [])
 
-@router.delete("/productos/{id}")
-def eliminar_producto(id: int):
-    for index, producto in enumerate(productos):
-        if producto["id"] == id:
-            productos.pop(index)
-            return {"mensaje": f"Producto con ID {id} eliminado"}
-    raise HTTPException(status_code=404, detail="Producto no encontrado")
+    productos_filtrados = [
+        {
+            "name": p.get("name", ""),
+            "brand_name": p.get("brand_name", ""),
+            "gender": p.get("gender", []),
+            "size_range": p.get("size_range", []),
+            "price_cop": p.get("price_cop", 0),
+            "main_picture_url": p.get("main_picture_url", "")  # Asegúrate de incluir la URL de la imagen
+        }
+        for p in productos
+    ]
 
-@router.get("/productos/marca/{marca}", tags=["Productos"])
-def obtener_productos_por_marca(marca: str, db: Session = Depends(get_db)):
-    productos = db.query(Producto).filter(Producto.marca.ilike(f"%{marca}%")).all()
-    if not productos:
-        raise HTTPException(status_code=404, detail="No se encontraron productos de esa marca")
-    return productos
-
+    return {"productos": productos_filtrados}

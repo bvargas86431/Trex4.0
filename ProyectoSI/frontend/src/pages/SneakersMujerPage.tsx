@@ -1,47 +1,81 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styles from '../styles/SneakersPage.module.css';
 
 interface Producto {
   id: number;
-  marca: string;
-  modelo: string;
-  precio: number;
-  imagen: string;
+  main_picture_url: string;
+  brand_name: string;
+  name: string;
+  price_cop: number;
+  gender: string[];
+  details: string;
 }
 
-export default function SneakersMujerPage() {
+const SneakersPage = () => {
   const [productos, setProductos] = useState<Producto[]>([]);
+  const location = useLocation();
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/productos')
+    fetch("http://localhost:8000/productos")
       .then(response => response.json())
-      .then((data: Producto[]) => {
-        const mujeres = data.filter(producto => 
-          producto.modelo.toLowerCase().includes("wmns")
-        );
-        setProductos(mujeres);
+      .then(data => {
+        let filteredProducts = data.productos;
+
+        if (location.pathname === "/hombre") {
+          filteredProducts = filteredProducts.filter((p: Producto) =>
+            p.gender.includes("Hombre")
+          );
+        } else if (location.pathname === "/mujer") {
+          filteredProducts = filteredProducts.filter((p: Producto) =>
+            p.gender.includes("Mujer")
+          );
+        }
+
+        setProductos(filteredProducts);
       })
-      .catch(error => console.error('Error cargando productos:', error));
-  }, []);
+      .catch(error => {
+        console.error("Error al obtener productos:", error);
+      });
+  }, [location.pathname]);
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('es-CO').format(price);
+  };
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">Sneakers Mujer</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {productos.map(producto => (
-          <div key={producto.id} className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-            <img
-              src={producto.imagen}
-              alt={producto.modelo}
-              className="h-64 w-full object-contain p-4"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-bold">{producto.marca}</h2>
-              <p className="text-gray-700">{producto.modelo}</p>
-              <p className="text-yellow-600 font-bold mt-2">${producto.precio}</p>
+    <div className={styles.pageContainer}>
+      <h1 className={styles.title}>
+        {location.pathname === "/hombre"
+          ? "Sneakers para Hombre"
+          : location.pathname === "/mujer"
+          ? "Sneakers para Mujer"
+          : "Todos los Sneakers"}
+      </h1>
+
+      <div className={styles.grid}>
+        {productos.length > 0 ? (
+          productos.map((producto) => (
+            <div key={producto.id} className={styles.card}>
+              <img
+                src={producto.main_picture_url}
+                alt={producto.name}
+                className={styles.image}
+              />
+              <div className={styles.cardContent}>
+                <h2 className={styles.cardTitle}>{producto.brand_name}</h2>
+                <h3 className={styles.cardName}>{producto.name}</h3>
+                <p className={styles.cardPrice}>${formatPrice(producto.price_cop)}</p>
+                <p className={styles.cardGender}>{producto.gender.join(', ')}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No se encontraron productos para este género.</p>
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default SneakersPage;
