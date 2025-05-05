@@ -99,3 +99,4 @@ def total_carrito(
     total = sum(item["precio"] * item["cantidad"] for item in carrito)
     return {"total": total}
 
+

@@ -14,7 +14,9 @@ import { Link } from "react-router-dom";
 import SneakersHombrePage from "./pages/SneakersHombrePage";
 import SneakersMujerPage from "./pages/SneakersMujerPage";
 import Cart from "./pages/Cart";
-import { CartProvider } from "../src/context/CartContext";
+import { CartProvider } from "../src/context/CartContext"
+import AuthPage from './pages/AuthPage';
+
 
 
 function App() {
@@ -143,6 +145,8 @@ function App() {
           />
           
           {/* Nueva ruta para sneakers */}
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/register" element={<AuthPage />} />
           <Route path="/sneakers" element={<SneakersPage />} />
           <Route path="/hombre" element={<SneakersHombrePage />} />
           <Route path="/mujer" element={<SneakersMujerPage />} />

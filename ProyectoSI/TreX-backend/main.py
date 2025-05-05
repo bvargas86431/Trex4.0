@@ -1,13 +1,14 @@
-from fastapi import FastAPI
+from fastapi import Depends, HTTPException, status
 from fastapi.openapi.utils import get_openapi
 from fastapi.security import OAuth2PasswordBearer
 from routers import productos, zapatos_mock, carrito, ordenes, auth, usuarios
 from models.db import crear_tablas
+from models.usuario import Usuario
 from routers import sneakers
-import sneaks_connector
 from routers import goat
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from auth.jwt import verificar_token
 
 
 
@@ -42,6 +43,18 @@ crear_tablas()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
+@app.get("/productos")
+async def get_productos(token: str = Depends(oauth2_scheme)):
+    # Verificar el token
+    usuario_info = verificar_token(token)
+    if usuario_info is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token inválido o expirado",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    return {"message": "Aquí están los productos", "usuario": usuario_info}
 
 def custom_openapi():
     if app.openapi_schema:

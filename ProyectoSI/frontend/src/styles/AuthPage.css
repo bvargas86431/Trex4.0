@@ -1,0 +1,109 @@
+/* AuthPage.css */
+
+/* Fondo y contenedor centrado */
+.auth-container {
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    background: #1a1a1a; /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo del formulario */
+.form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 400px; /* Establece el ancho del formulario */
+}
+
+/* Estilo para los campos de entrada */
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilo para el botón de enviar */
+.submit-button {
+    background-color: #FFB300; /* Color de fondo */
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background-color: #5e4200; /* Cambio de color en hover */
+}
+
+/* Estilo para el enlace de cambio entre inicio de sesión y registro */
+p {
+    text-align: center;
+    cursor: pointer;
+    color: #FFB300;
+    font-size: 14px;
+}
+
+p:hover {
+    color: #5e4200;
+}
+
+.userMenu {
+    position: relative;
+    list-style: none;
+  }
+  
+  .userIconWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .userIcon {
+    font-size: 26px;
+    color: #ffb300;
+    cursor: pointer;
+  }
+  
+  /* Menú desplegable oculto por defecto */
+  .userDropdown {
+    display: none;
+    position: absolute;
+    top: 120%; /* bajarlo un poco más si es necesario */
+    right: 0;
+    background-color: #1a1a1a;
+    padding: 10px 0;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999;
+    min-width: 150px;
+  }
+  
+  /* Mostrar menú cuando haces hover en el contenedor */
+  .userIconWrapper:hover .userDropdown {
+    display: block;
+  }
+  
+  /* Estilo de los enlaces dentro del menú */
+  .userDropdown li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  
+  .userDropdown li a:hover {
+    background: #333;
+  }
+  
+

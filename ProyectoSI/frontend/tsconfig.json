@@ -1,7 +1,11 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "es5",  // Usa ES5 como objetivo de salida
+    "lib": ["dom", "es6"],  // Asegura la compatibilidad con el navegador y ES6
+    "jsx": "react-jsx",  // Asegura que JSX se compila correctamente en React
+    "strict": true,  // Habilita las comprobaciones estrictas (recomendado)
+    "esModuleInterop": true,  // Permite importar módulos comunes (como `import x from 'y'`)
+    "skipLibCheck": true,  // Omite la comprobación de las bibliotecas, mejora el rendimiento
+    "forceConsistentCasingInFileNames": true  // Evita diferencias de mayúsculas/minúsculas en los nombres de archivo
+  }
 }
