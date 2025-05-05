@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import SneakerModal from '../components/SneakerModal'; // Assuming you have the SneakerModal component
 import styles from '../styles/SneakersPage.module.css';
 
 interface Producto {
@@ -10,11 +12,16 @@ interface Producto {
   price_cop: number;
   gender: string[];
   details: string;
+  quantity: number;
 }
 
 const SneakersPage = () => {
   const [productos, setProductos] = useState<Producto[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Producto | null>(null);
   const location = useLocation();
+  const { addToCart } = useCart();
+  
 
   useEffect(() => {
     fetch("http://localhost:8000/productos")
@@ -43,6 +50,15 @@ const SneakersPage = () => {
     return new Intl.NumberFormat('es-CO').format(price);
   };
 
+  const openModal = (product: Producto) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.title}>
@@ -50,30 +66,45 @@ const SneakersPage = () => {
           ? "Sneakers para Hombre"
           : location.pathname === "/mujer"
           ? "Sneakers para Mujer"
-          : "Todos los Sneakers"}
+          : "Todos nuestros Sneakers"}
       </h1>
 
       <div className={styles.grid}>
-        {productos.length > 0 ? (
-          productos.map((producto) => (
-            <div key={producto.id} className={styles.card}>
-              <img
-                src={producto.main_picture_url}
-                alt={producto.name}
-                className={styles.image}
-              />
-              <div className={styles.cardContent}>
-                <h2 className={styles.cardTitle}>{producto.brand_name}</h2>
-                <h3 className={styles.cardName}>{producto.name}</h3>
-                <p className={styles.cardPrice}>${formatPrice(producto.price_cop)}</p>
-                <p className={styles.cardGender}>{producto.gender.join(', ')}</p>
-              </div>
+        {productos.map((producto) => (
+          <div key={producto.id} className={styles.card}>
+            <input
+              type="checkbox"
+              className={styles.cardCheckbox}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  addToCart(producto); // Adds the selected product to the cart
+                }
+              }}
+            />
+            <img
+              src={producto.main_picture_url}
+              alt={producto.name}
+              className={styles.image}
+              onClick={() => openModal(producto)} // Open the modal when clicking on the image
+            />
+            <div className={styles.cardContent}>
+              <h2 className={styles.cardTitle}>{producto.brand_name}</h2>
+              <h3 className={styles.cardName}>{producto.name}</h3>
+              <p className={styles.cardPrice}>${formatPrice(producto.price_cop)}</p>
+              <p className={styles.cardGender}>{producto.gender.join(', ')}</p>
             </div>
-          ))
-        ) : (
-          <p>No se encontraron productos para este género.</p>
-        )}
+          </div>
+        ))}
       </div>
+      {/* SneakerModal for viewing the product details */}
+      {selectedProduct && (
+        <SneakerModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          addToCart={addToCart} // Pass the 'addToCart' function here
+        />
+      )}
     </div>
   );
 };

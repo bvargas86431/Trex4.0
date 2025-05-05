@@ -1,9 +1,6 @@
-// src/pages/SneakersPage.tsx
-
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-
 import SneakerModal from '../components/SneakerModal'; // Assuming you have the SneakerModal component
 import styles from '../styles/SneakersPage.module.css';
 
