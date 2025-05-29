@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Importar useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import styles from "../styles/navbar.module.css";
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
@@ -12,29 +12,25 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const userMenuRef = useRef<HTMLLIElement>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // Estado para controlar el login
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   let lastScrollY = 0;
 
-  // Controlar visibilidad de navbar al hacer scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsVisible(currentScrollY < lastScrollY || currentScrollY === 0);
       lastScrollY = currentScrollY;
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Verificar si el usuario está logueado al cargar el componente
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    setIsLoggedIn(!!token); // Si hay un token, el usuario está logueado
+    setIsLoggedIn(!!token);
   }, []);
 
-  // Cerrar menú usuario al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -50,17 +46,20 @@ export default function Navbar() {
 
   const scrollLink = (to: string, label: string) =>
     location.pathname === "/" ? (
-      <ScrollLink to={to} smooth={true} duration={500}>
+      <ScrollLink to={to} smooth={true} duration={500} onClick={() => setIsOpen(false)}>
         {label}
       </ScrollLink>
     ) : (
-      <Link to={`/?scrollTo=${to}`}>{label}</Link>
+      <Link to={`/?scrollTo=${to}`} onClick={() => setIsOpen(false)}>
+        {label}
+      </Link>
     );
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Eliminar el token al cerrar sesión
-    setIsLoggedIn(false); // Actualizar el estado de login
-    navigate("/"); // Redirigir a la página principal
+    localStorage.removeItem("authToken");
+    setIsLoggedIn(false);
+    navigate("/");
+    setIsOpen(false);
   };
 
   return (
@@ -74,9 +73,13 @@ export default function Navbar() {
         <li>{scrollLink("offers", "Ofertas")}</li>
         <li>{scrollLink("new-collection", "Nuevas Colecciones")}</li>
         <li>{scrollLink("accessories", "Accesorios")}</li>
-        <li>{scrollLink("contact", "Contacto")}</li>
+        <li>
+          <Link to="/contactanos" onClick={() => setIsOpen(false)}>Contáctanos</Link>
+        </li>
+        <li>
+          <Link to="/about-us" onClick={() => setIsOpen(false)}>Sobre Nosotros</Link>
+        </li>
 
-        {/* Mostrar opciones de sesión solo si el usuario no está logueado */}
         {!isLoggedIn ? (
           <li className={styles.userMenu} ref={userMenuRef}>
             <div className={styles.userIconWrapper} onClick={() => setIsUserMenuOpen((prev) => !prev)}>
@@ -84,8 +87,8 @@ export default function Navbar() {
             </div>
             {isUserMenuOpen && (
               <ul className={styles.userDropdown}>
-                <li><Link to="/login">Iniciar sesión</Link></li>
-                <li><Link to="/register">Registrarse</Link></li>
+                <li><Link to="/login" onClick={() => setIsOpen(false)}>Iniciar sesión</Link></li>
+                <li><Link to="/register" onClick={() => setIsOpen(false)}>Registrarse</Link></li>
               </ul>
             )}
           </li>
@@ -107,9 +110,8 @@ export default function Navbar() {
       </div>
 
       <button className={styles.menuIcon} onClick={() => setIsOpen(!isOpen)}>
-     {isOpen ? <FaTimes /> : <FaBars />}
+        {isOpen ? <FaTimes /> : <FaBars />}
       </button>
-
     </nav>
   );
 }

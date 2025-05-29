@@ -16,6 +16,11 @@ import SneakersMujerPage from "./pages/SneakersMujerPage";
 import Cart from "./pages/Cart";
 import { CartProvider } from "../src/context/CartContext"
 import AuthPage from './pages/AuthPage';
+import TermsPage from "./pages/TermsPage";
+import AboutUsPage from './pages/AboutUsPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import ContactUsPage from './pages/ContactUsPage';
+
 
 
 
@@ -38,15 +43,18 @@ function App() {
                   viewport={{ once: true }}
                 >
                   <BackgroundVideo videoSrc={shoesVideo}>
-                    <h1 className="title">
-                      <span>TreX:</span> Estilo en cada paso
-                    </h1>
-                    <p className="subtitle">Zapatos de calidad para gente de calidad.</p>
-    
-                    <Link to="/sneakers">
-                      <button className="button">Ver Más</button>
-                    </Link>
-                  </BackgroundVideo>
+  <div className="heroContent">
+    <h1 className="title">
+      <span>TreX:</span> Estilo en cada paso
+    </h1>
+    <p className="subtitle">Zapatos de calidad para gente de calidad.</p>
+
+    <Link to="/sneakers">
+      <button className="button">Ver Más</button>
+    </Link>
+  </div>
+</BackgroundVideo>
+
                 </motion.section>
 
                 <motion.section
@@ -151,6 +159,10 @@ function App() {
           <Route path="/hombre" element={<SneakersHombrePage />} />
           <Route path="/mujer" element={<SneakersMujerPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/terminos" element={<TermsPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/politica-privacidad" element={<PrivacyPolicyPage/>} />
+          <Route path="/contactanos" element={<ContactUsPage />} />
         </Routes>
       </Router>
     </CartProvider>

@@ -82,4 +82,22 @@
     font-size: 0.8rem;
     color: gray;
   }
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .link {
+    color: gray;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .link:hover {
+    color: #ffb300;
+    text-decoration: underline;
+  }
   

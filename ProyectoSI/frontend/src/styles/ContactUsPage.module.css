@@ -1,0 +1,85 @@
+.contactContainer {
+    max-width: 600px;
+    margin: 100px auto 80px auto;
+    padding: 30px 25px;
+    background-color: #121212;
+    color: white;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #FFB300;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #ddd;
+  }
+  
+  .input,
+  .textarea {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background-color: #222;
+    color: white;
+    resize: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .input:focus,
+  .textarea:focus {
+    background-color: #333;
+  }
+  
+  .textarea {
+    min-height: 120px;
+  }
+  
+  .submitButton {
+    background-color: #FFB300;
+    border: none;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #121212;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .submitButton:hover {
+    background-color: #e6a200;
+  }
+  
+  .thankYouMessage {
+    font-size: 1.1rem;
+    text-align: center;
+    color: #FFB300;
+    font-weight: 700;
+  }
+  

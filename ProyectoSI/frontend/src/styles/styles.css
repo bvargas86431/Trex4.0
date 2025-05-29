@@ -80,4 +80,84 @@ body{
   .womenShoesContainer{
     margin-top: 100px;
   }
-  
+  /* Base styles ya existentes aquí... */
+
+/* Contenedor de colecciones para que haga wrap en pantallas pequeñas */
+.collectionContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Ajuste del título principal en móvil */
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.subtitle {
+  max-width: 90%;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+
+/* Botón centrado en móvil */
+.button {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Título colección adaptable */
+.tittleCollection {
+  font-size: 2rem;
+  margin-top: 100px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+/* Contenedores de secciones de zapatos */
+.menShoesContainer,
+.womenShoesContainer {
+  margin-top: 100px;
+  padding: 0 10px;
+}
+
+/* Ajuste de parallax para móviles */
+.parallaxContainer {
+  margin-top: 100px;
+  padding: 0 10px;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .collectionContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menShoesContainer,
+  .womenShoesContainer {
+    margin-top: 50px;
+  }
+
+  .tittleCollection {
+    font-size: 1.5rem;
+    margin-top: 50px;
+  }
+}
+.heroContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}

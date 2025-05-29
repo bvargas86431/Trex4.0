@@ -1,5 +1,6 @@
 import { FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
 import styles from "../styles/Footer.module.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -19,6 +20,10 @@ const Footer = () => {
           <FaInstagram />
           <FaTwitter />
           <FaGithub />
+        </div>
+        <div className={styles.links}>
+          <Link to="/politica-privacidad" className={styles.link}>Política de Privacidad</Link>
+          <Link to="/terminos" className={styles.link}>Términos y Condiciones</Link>
         </div>
         <p className={styles.copyright}>© Copyright. All rights reserved.</p>
       </div>

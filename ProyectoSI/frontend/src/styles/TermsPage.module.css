@@ -1,0 +1,58 @@
+.termsContainer {
+    max-width: 800px;
+    margin: 100px auto 80px auto;
+    padding: 40px 30px;
+    background: #121212;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .termsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #ffb300;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+  }
+  
+  .paragraph {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #d1d1d1;
+  }
+  
+  .list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    color: #cfcfcf;
+    font-size: 1.1rem;
+  }
+  
+  .listItem {
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  
+  .link {
+    color: #ffb300;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .link:hover,
+  .link:focus {
+    color: #ffd54f;
+    text-decoration: underline;
+  }
+  
